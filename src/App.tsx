@@ -44,6 +44,7 @@ export default function App() {
         const batchSize = Math.min(pageSize, remaining)
         const result = await fetchKalturaEntries(
           config.apiUrl,
+          config.apiAction,
           config.ks,
           batchSize,
           pageIndex,
@@ -77,14 +78,14 @@ export default function App() {
     <div className="app">
       <header className="app-header">
         <h1>KDB Fetch Skill</h1>
-        <p className="subtitle">Kaltura Entry Browser &amp; Exporter</p>
+        <p className="subtitle">Kaltura API Browser &amp; Exporter</p>
       </header>
 
       <main className="app-main">
         <ConfigForm onFetch={handleFetch} loading={loading} />
 
         {loading && (
-          <div className="status-bar loading">Fetching entries from Kaltura...</div>
+          <div className="status-bar loading">Fetching from Kaltura API...</div>
         )}
         {error && <div className="status-bar error">Error: {error}</div>}
 

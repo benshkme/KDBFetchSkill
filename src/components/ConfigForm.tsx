@@ -8,6 +8,7 @@ interface Props {
 
 export function ConfigForm({ onFetch, loading }: Props) {
   const [apiUrl, setApiUrl] = useState('https://www.kaltura.com')
+  const [apiAction, setApiAction] = useState('baseEntry/list')
   const [ks, setKs] = useState('')
   const [fetchLimit, setFetchLimit] = useState(500)
   const [csvLimit, setCsvLimit] = useState(500)
@@ -20,7 +21,7 @@ export function ConfigForm({ onFetch, loading }: Props) {
 
   function handleSubmit(e: React.FormEvent) {
     e.preventDefault()
-    onFetch({ apiUrl, ks, fetchLimit, csvLimit })
+    onFetch({ apiUrl, apiAction, ks, fetchLimit, csvLimit })
   }
 
   return (
@@ -33,6 +34,16 @@ export function ConfigForm({ onFetch, loading }: Props) {
             value={apiUrl}
             onChange={(e) => setApiUrl(e.target.value)}
             placeholder="https://www.kaltura.com"
+            required
+          />
+        </label>
+        <label>
+          API Action
+          <input
+            type="text"
+            value={apiAction}
+            onChange={(e) => setApiAction(e.target.value)}
+            placeholder="e.g. flavorParams/list"
             required
           />
         </label>

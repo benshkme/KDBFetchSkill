@@ -1,5 +1,6 @@
 export interface KalturaConfig {
   apiUrl: string
+  apiAction: string
   ks: string
   fetchLimit: number
   csvLimit: number

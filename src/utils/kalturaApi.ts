@@ -1,13 +1,16 @@
 import type { KalturaListResponse } from '../types/kaltura'
 
+// apiAction should be in "service/action" format, e.g. "flavorParams/list"
 export async function fetchKalturaEntries(
   apiUrl: string,
+  apiAction: string,
   ks: string,
   pageSize: number,
   pageIndex: number,
 ): Promise<KalturaListResponse> {
   const base = apiUrl.replace(/\/$/, '')
-  const url = `${base}/api_v3/service/baseEntry/action/list`
+  const [service, action] = apiAction.split('/')
+  const url = `${base}/api_v3/service/${service}/action/${action}`
 
   const params = new URLSearchParams({
     ks,
